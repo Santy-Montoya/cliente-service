@@ -61,12 +61,7 @@ Content-Type: application/json
 ###
 
 ### Eliminar el primer cliente
-DELETE http://localhost:8080/api/v1/cliente-service/clientes
-Content-Type: application/json
-
-{
-  "id": 1
-}
+DELETE http://localhost:8080/api/v1/cliente-service/clientes/1
 
 ###
 

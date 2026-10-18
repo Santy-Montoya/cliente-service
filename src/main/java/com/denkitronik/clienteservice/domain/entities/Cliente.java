@@ -1,7 +1,9 @@
-package com.denkitronik.clienteservice.entities;
+package com.denkitronik.clienteservice.domain.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.Getter;
 import lombok.Setter;
 import java.util.Date;
@@ -16,11 +18,14 @@ public class Cliente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotEmpty(message = "El nombre no puede estar vacío")
     @Column(nullable = false)
     private String nombre;
 
     private String apellido;
 
+    @NotEmpty(message = "El email no puede estar vacío")
+    @Email(message = "El email no tiene un formato válido")
     @Column(nullable = false, unique = true)
     private String email;
 
