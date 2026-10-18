@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 import java.util.Date;
@@ -19,9 +21,11 @@ public class Cliente {
     private Long id;
 
     @NotEmpty(message = "El nombre no puede estar vacío")
+    @Size(min = 2, message = "El nombre debe tener al menos 2 caracteres")
     @Column(nullable = false)
     private String nombre;
 
+    @NotEmpty(message = "El apellido no puede estar vacío")
     private String apellido;
 
     @NotEmpty(message = "El email no puede estar vacío")
@@ -35,6 +39,7 @@ public class Cliente {
 
     private String foto;
 
+    @NotNull(message = "La región es obligatoria")
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "region_id")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
